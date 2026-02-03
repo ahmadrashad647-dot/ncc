@@ -1,3 +1,8 @@
+import { auth } from "./firebase-config.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 // Firebase CDN
 const firebaseConfig = {
   apiKey: "AIzaSyCrlP360Fpx-9tCyggJeoqLgkwnTlRTJ5o",
