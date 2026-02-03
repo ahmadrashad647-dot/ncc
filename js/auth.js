@@ -1,31 +1,33 @@
-alert("auth.js connected");
-console.log("AUTH FILE LOADED");
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { firebaseConfig } from "./firebase-config.js";
+// Firebase CDN
+const firebaseConfig = {
+  apiKey: "AIzaSyCrlP360Fpx-9tCyggJeoqLgkwnTlRTJ5o",
+  authDomain: "ncc-project-3b0f1.firebaseapp.com",
+  projectId: "ncc-project-3b0f1",
+  storageBucket: "ncc-project-3b0f1.firebasestorage.app",
+  messagingSenderId: "590441541895",
+  appId: "1:590441541895:web:2a861830fcb60f09f655a2"
+};
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
 
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const loginBtn = document.getElementById("loginBtn");
-const signupBtn = document.getElementById("signupBtn");
+loginBtn.onclick = () => {
+  auth.signInWithEmailAndPassword(
+    email.value,
+    password.value
+  )
+  .then(() => {
+    alert("Login success");
+    window.location.href = "dashboard.html";
+  })
+  .catch(err => alert(err.message));
+};
 
-// LOGIN
-loginBtn.addEventListener("click", () => {
-  signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    .then(() => {
-      window.location.href = "dashboard.html";
-    })
-    .catch(err => alert(err.message));
-});
-
-// SIGNUP
-signupBtn.addEventListener("click", () => {
-  createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-    .then(() => {
-      alert("Account created. Now login.");
-    })
-    .catch(err => alert(err.message));
-});
+signupBtn.onclick = () => {
+  auth.createUserWithEmailAndPassword(
+    email.value,
+    password.value
+  )
+  .then(() => alert("Account created"))
+  .catch(err => alert(err.message));
+};
