@@ -85,7 +85,7 @@ document.getElementById("authForm")
           alert("Invalid credentials");
         }
         else {
-          alert("Login failed");
+          alert("Login failed , Create new account ");
         }
 
       });
